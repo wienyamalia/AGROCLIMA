@@ -52,48 +52,48 @@ app.use(express());
 
 const {DataTypes} = Sequelize;
 //table users for logim-register pages
-const Users = db.define('users', {
-    name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    no_hp: DataTypes.STRING,
-    password: DataTypes.STRING,
-    refresh_token: DataTypes.TEXT
-}, {
-    freezeTableName: true
-});
+// const Users = db.define('users', {
+//     name: DataTypes.STRING,
+//     email: DataTypes.STRING,
+//     no_hp: DataTypes.STRING,
+//     password: DataTypes.STRING,
+//     refresh_token: DataTypes.TEXT
+// }, {
+//     freezeTableName: true
+// });
 
 //table for recommendation pages
 const Rec = db.define('recommendation', {
-    Nitrogen: DataTypes.STRING,
-    Phosphorous: DataTypes.STRING,
-    Potassium: DataTypes.STRING,
+    N: DataTypes.STRING,
+    P: DataTypes.STRING,
+    K: DataTypes.STRING,
     temperature: DataTypes.STRING,
     humidity: DataTypes.STRING,
-    pH: DataTypes.STRING,
+    ph: DataTypes.STRING,
     rainfall: DataTypes.STRING
 }, {
     freezeTableName: true
 });
 
 //table for product pages
-const Product = db.define('products', {
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
-    photo: DataTypes.STRING,
-}, {
-    freezeTableName: true
-});
+// const Product = db.define('products', {
+//     name: DataTypes.STRING,
+//     description: DataTypes.STRING,
+//     photo: DataTypes.STRING,
+// }, {
+//     freezeTableName: true
+// });
 
-//table for article pages
-const Article = db.define('articles', {
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
-    photo: DataTypes.STRING,
-}, {
-    freezeTableName: true
-});
+// //table for article pages
+// const Article = db.define('articles', {
+//     name: DataTypes.STRING,
+//     description: DataTypes.STRING,
+//     photo: DataTypes.STRING,
+// }, {
+//     freezeTableName: true
+// });
 
-// //create new table
+//create new table
 // (async() => {
 //     await db.sync();
 // })();
@@ -245,7 +245,7 @@ app.get('/login/token', async(req, res) => {
 app.get('/Recommendation/data', async(req, res) => {
     try {
         const rec = await Rec.findAll({
-            attributes: ['id', 'Nitrogen', 'Phosphorous', 'Potassium', 'temperature', 'humidity', 'pH', 'rainfall'],
+            attributes: ['id', 'N', 'P', 'K', 'temperature', 'humidity', 'ph', 'rainfall'],
         });
         res.json(rec);
     } catch (error) {
@@ -257,7 +257,7 @@ app.get('/Recommendation/data', async(req, res) => {
 app.get('/Recommendation/data/:id', async(req, res) => {
     try {
         const rec = await Rec.findOne({
-            attributes: ['id', 'Nitrogen', 'Phosphorous', 'Potassium', 'temperature', 'humidity', 'pH', 'rainfall'],
+            attributes: ['id', 'N', 'P', 'K', 'temperature', 'humidity', 'ph', 'rainfall'],
             where: {
                 id: req.params.id
             }
@@ -270,17 +270,17 @@ app.get('/Recommendation/data/:id', async(req, res) => {
 
 //create new data recommendation
 app.post('/Recommendation/new', async(req, res) => {
-    const {Nitrogen, Phosphorous, Potassium, temperature, humidity, pH, rainfall} = req.body;
+    const {N, P, K, temperature, humidity, ph, rainfall} = req.body;
     //create data into db
     try {
         await Rec.create({
-            Nitrogen: Nitrogen,
-            Phosphorous: Phosphorous,
-            Potassium: Potassium,
+            N: N,
+            P: P,
+            K: K,
             temperature: temperature,
             humidity: humidity,
-            pH: pH,
-            rainfall: rainfall 
+            ph: ph,
+            rainfall: rainfall
         });
         res.json({msg: "Created Success"});
     } catch (error) {
