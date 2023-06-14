@@ -51,7 +51,7 @@ app.use(express());
 //initialitation table in database
 
 const {DataTypes} = Sequelize;
-//table users for logim-register pages
+// table users for logim-register pages
 const Users = db.define('users', {
     name: DataTypes.STRING,
     email: DataTypes.STRING,
