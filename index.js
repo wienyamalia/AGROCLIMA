@@ -87,7 +87,7 @@ const Product = db.define('products', {
 
 //table for article pages
 const Article = db.define('articles', {
-    name: DataTypes.STRING,
+    title: DataTypes.STRING,
     description: DataTypes.STRING,
     photo: DataTypes.STRING,
 }, {
@@ -95,9 +95,9 @@ const Article = db.define('articles', {
 });
 
 //create new table
-// (async() => {
-//     await db.sync();
-// })();
+(async() => {
+    await db.sync();
+})();
 
 //LOGIN-REGISTER PAGES
 //verify token middleware
@@ -392,7 +392,7 @@ app.delete('/Product/:id', async(req, res) => {
 app.get('/Article', async(req, res) => {
     try {
         const rec = await Article.findAll({
-            attributes: ['id', 'name', 'description', 'photo'],
+            attributes: ['id', 'title', 'description', 'photo'],
         });
         res.json(rec);
     } catch (error) {
@@ -404,7 +404,7 @@ app.get('/Article', async(req, res) => {
 app.get('/Article/:id', async(req, res) => {
     try {
         const rec = await Article.findOne({
-            attributes: ['id', 'name', 'description', 'photo'],
+            attributes: ['id', 'title', 'description', 'photo'],
             where: {
                 id: req.params.id
             }
@@ -417,7 +417,7 @@ app.get('/Article/:id', async(req, res) => {
 
 //added new article
 app.post('/Article', upload.single('photo'), (req, res) => {
-    const {name, description} = req.body;
+    const {title, description} = req.body;
     const photoPath = req.file.path;
 
     //upload photo in cloud storage
@@ -441,7 +441,7 @@ app.post('/Article', upload.single('photo'), (req, res) => {
         //saved to database
         try {
             await Article.create({
-                name: name,
+                title: title,
                 description: description,
                 photo: photoUrl, 
             });
