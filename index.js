@@ -207,7 +207,7 @@ app.post('/login', async(req, res) => {
             httpOnly: true,
             maxAge: 24 * 60 * 60 * 1000,
         });        
-        res.json({accessToken, msg: 'Login Success'});
+        res.json({ status: true, msg: "Login Success", data: { name, email, no_hp },accessToken});
     } catch (error) {
         res.status(404).json({msg: "Login Failed!"});   
         console.log(error);
