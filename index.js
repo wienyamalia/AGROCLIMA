@@ -78,7 +78,7 @@ const Rec = db.define('recommendation', {
 //table for product pages
 const Product = db.define('products', {
     name: DataTypes.STRING,
-    harga: DataTypes.STRING,
+    price: DataTypes.STRING,
     description: DataTypes.STRING,
     photo: DataTypes.STRING,
 }, {
@@ -309,7 +309,7 @@ app.delete('/Recommendation/data/:id', async(req, res) => {
 app.get('/Product', async(req, res) => {
     try {
         const rec = await Product.findAll({
-            attributes: ['id', 'name', 'harga', 'description', 'photo'],
+            attributes: ['id', 'name', 'price', 'description', 'photo'],
         });
         res.json(rec);
     } catch (error) {
@@ -321,7 +321,7 @@ app.get('/Product', async(req, res) => {
 app.get('/Product/:id', async(req, res) => {
     try {
         const rec = await Product.findOne({
-            attributes: ['id', 'name', 'harga', 'description', 'photo'],
+            attributes: ['id', 'name', 'price', 'description', 'photo'],
             where: {
                 id: req.params.id
             }
@@ -334,7 +334,7 @@ app.get('/Product/:id', async(req, res) => {
 
 //added new product
 app.post('/Product', upload.single('photo'), (req, res) => {
-    const {name, harga, description} = req.body;
+    const {name, price, description} = req.body;
     const photoPath = req.file.path;
 
     //upload photo in cloud storage
@@ -359,7 +359,7 @@ app.post('/Product', upload.single('photo'), (req, res) => {
         try {
             await Product.create({
                 name: name,
-                harga: harga,
+                price: price,
                 description: description,
                 photo: photoUrl, 
             });
