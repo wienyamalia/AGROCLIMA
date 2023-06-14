@@ -95,9 +95,9 @@ const Article = db.define('articles', {
 });
 
 //create new table
-(async() => {
-    await db.sync();
-})();
+// (async() => {
+//     await db.sync();
+// })();
 
 //LOGIN-REGISTER PAGES
 //verify token middleware
