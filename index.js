@@ -309,7 +309,7 @@ app.delete('/Recommendation/data/:id', async(req, res) => {
 app.get('/Product', async(req, res) => {
     try {
         const rec = await Product.findAll({
-            attributes: ['id', 'harga', 'name', 'description', 'photo'],
+            attributes: ['id', 'name', 'harga', 'description', 'photo'],
         });
         res.json(rec);
     } catch (error) {
@@ -321,7 +321,7 @@ app.get('/Product', async(req, res) => {
 app.get('/Product/:id', async(req, res) => {
     try {
         const rec = await Product.findOne({
-            attributes: ['id', 'harga', 'name', 'description', 'photo'],
+            attributes: ['id', 'name', 'harga', 'description', 'photo'],
             where: {
                 id: req.params.id
             }
