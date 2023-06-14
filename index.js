@@ -193,10 +193,10 @@ app.post('/login', async(req, res) => {
         const email = user.email;
         const no_hp = user.no_hp;
         const accessToken = jwt.sign({userId, name, email, no_hp}, process.env.ACCESS_TOKEN_SECRET, {
-            expiresIn: '90s'
+            expiresIn: '1d'
         });
         const refreshToken = jwt.sign({userId, name, email, no_hp}, process.env.REFRESH_TOKEN_SECRET, {
-            expiresIn: '1d'
+            expiresIn: '7d'
         });
         await Users.update({refresh_token: refreshToken}, {
             where: {
