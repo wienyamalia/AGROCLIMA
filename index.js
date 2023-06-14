@@ -52,15 +52,15 @@ app.use(express());
 
 const {DataTypes} = Sequelize;
 //table users for logim-register pages
-// const Users = db.define('users', {
-//     name: DataTypes.STRING,
-//     email: DataTypes.STRING,
-//     no_hp: DataTypes.STRING,
-//     password: DataTypes.STRING,
-//     refresh_token: DataTypes.TEXT
-// }, {
-//     freezeTableName: true
-// });
+const Users = db.define('users', {
+    name: DataTypes.STRING,
+    email: DataTypes.STRING,
+    no_hp: DataTypes.STRING,
+    password: DataTypes.STRING,
+    refresh_token: DataTypes.TEXT
+}, {
+    freezeTableName: true
+});
 
 //table for recommendation pages
 const Rec = db.define('recommendation', {
@@ -76,22 +76,22 @@ const Rec = db.define('recommendation', {
 });
 
 //table for product pages
-// const Product = db.define('products', {
-//     name: DataTypes.STRING,
-//     description: DataTypes.STRING,
-//     photo: DataTypes.STRING,
-// }, {
-//     freezeTableName: true
-// });
+const Product = db.define('products', {
+    name: DataTypes.STRING,
+    description: DataTypes.STRING,
+    photo: DataTypes.STRING,
+}, {
+    freezeTableName: true
+});
 
-// //table for article pages
-// const Article = db.define('articles', {
-//     name: DataTypes.STRING,
-//     description: DataTypes.STRING,
-//     photo: DataTypes.STRING,
-// }, {
-//     freezeTableName: true
-// });
+//table for article pages
+const Article = db.define('articles', {
+    name: DataTypes.STRING,
+    description: DataTypes.STRING,
+    photo: DataTypes.STRING,
+}, {
+    freezeTableName: true
+});
 
 //create new table
 // (async() => {
