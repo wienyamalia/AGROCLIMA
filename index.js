@@ -78,6 +78,7 @@ const Rec = db.define('recommendation', {
 //table for product pages
 const Product = db.define('products', {
     name: DataTypes.STRING,
+    harga: DataTypes.STRING,
     description: DataTypes.STRING,
     photo: DataTypes.STRING,
 }, {
@@ -296,7 +297,7 @@ app.delete('/Recommendation/data/:id', async(req, res) => {
         await Rec.destroy({
             where: {id: id},
         });
-        res.json({msg: "Data was deleted"})
+        res.json({msg: `Data ${id} was deleted`})
     } catch (error) {
         console.log(error);        
     }
@@ -308,7 +309,7 @@ app.delete('/Recommendation/data/:id', async(req, res) => {
 app.get('/Product', async(req, res) => {
     try {
         const rec = await Product.findAll({
-            attributes: ['id', 'name', 'description', 'photo'],
+            attributes: ['id', 'harga', 'name', 'description', 'photo'],
         });
         res.json(rec);
     } catch (error) {
@@ -320,7 +321,7 @@ app.get('/Product', async(req, res) => {
 app.get('/Product/:id', async(req, res) => {
     try {
         const rec = await Product.findOne({
-            attributes: ['id', 'name', 'description', 'photo'],
+            attributes: ['id', 'harga', 'name', 'description', 'photo'],
             where: {
                 id: req.params.id
             }
@@ -333,7 +334,7 @@ app.get('/Product/:id', async(req, res) => {
 
 //added new product
 app.post('/Product', upload.single('photo'), (req, res) => {
-    const {name, description} = req.body;
+    const {name, harga, description} = req.body;
     const photoPath = req.file.path;
 
     //upload photo in cloud storage
@@ -358,6 +359,7 @@ app.post('/Product', upload.single('photo'), (req, res) => {
         try {
             await Product.create({
                 name: name,
+                harga: harga,
                 description: description,
                 photo: photoUrl, 
             });
@@ -379,7 +381,7 @@ app.delete('/Product/:id', async(req, res) => {
                 id: req.params.id
             }
         });
-        res.json({msg: 'Product was deleted'});
+        res.json({msg: `Product ${id} was deleted`});
     } catch (error) {
         console.log(error);
     };
@@ -461,7 +463,7 @@ app.delete('/Article/:id', async(req, res) => {
                 id: req.params.id
             }
         });
-        res.json({msg: 'Product was deleted'});
+        res.json({msg: `Product ${id} was deleted`});
     } catch (error) {
         console.log(error);
     };
