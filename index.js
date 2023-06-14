@@ -78,7 +78,7 @@ const Rec = db.define('recommendation', {
 //table for product pages
 const Product = db.define('products', {
     name: DataTypes.STRING,
-    price: DataTypes.STRING,
+    price: DataTypes.INTEGER,
     description: DataTypes.STRING,
     photo: DataTypes.STRING,
 }, {
@@ -381,7 +381,7 @@ app.delete('/Product/:id', async(req, res) => {
                 id: req.params.id
             }
         });
-        res.json({msg: `Product ${id} was deleted`});
+        res.json({msg: 'Product was deleted'});
     } catch (error) {
         console.log(error);
     };
@@ -463,7 +463,7 @@ app.delete('/Article/:id', async(req, res) => {
                 id: req.params.id
             }
         });
-        res.json({msg: 'Product was deleted'});
+        res.json({msg: 'Article was deleted'});
     } catch (error) {
         console.log(error);
     };
