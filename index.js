@@ -297,7 +297,7 @@ app.delete('/Recommendation/data/:id', async(req, res) => {
         await Rec.destroy({
             where: {id: id},
         });
-        res.json({msg: `Data ${id} was deleted`})
+        res.json({msg: 'Data was deleted'})
     } catch (error) {
         console.log(error);        
     }
@@ -463,7 +463,7 @@ app.delete('/Article/:id', async(req, res) => {
                 id: req.params.id
             }
         });
-        res.json({msg: `Product ${id} was deleted`});
+        res.json({msg: 'Product was deleted'});
     } catch (error) {
         console.log(error);
     };
