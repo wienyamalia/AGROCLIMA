@@ -88,16 +88,16 @@ const Product = db.define('products', {
 //table for article pages
 const Article = db.define('articles', {
     title: DataTypes.STRING,
-    description: DataTypes.STRING,
+    description: DataTypes.TEXT,
     photo: DataTypes.STRING,
 }, {
     freezeTableName: true
 });
 
 //create new table
-// (async() => {
-//     await db.sync();
-// })();
+(async() => {
+    await db.sync();
+})();
 
 //LOGIN-REGISTER PAGES
 //verify token middleware
