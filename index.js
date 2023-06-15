@@ -311,7 +311,7 @@ app.get('/Product', async(req, res) => {
         const rec = await Product.findAll({
             attributes: ['id', 'name', 'price', 'description', 'photo'],
         });
-        res.json(rec);
+        res.json({status: true, msg: "Data availabled", rec});
     } catch (error) {
         console.log(error);
     }
@@ -326,7 +326,7 @@ app.get('/Product/:id', async(req, res) => {
                 id: req.params.id
             }
         });
-        res.json(rec);
+        res.json({status: true, msg: "Data availabled", rec});
     } catch (error) {
         console.log(error);
     }
@@ -394,7 +394,7 @@ app.get('/Article', async(req, res) => {
         const rec = await Article.findAll({
             attributes: ['id', 'title', 'description', 'photo'],
         });
-        res.json(rec);
+        res.json({status: true, msg: "Data availabled", rec});
     } catch (error) {
         console.log(error);
     }
@@ -409,7 +409,7 @@ app.get('/Article/:id', async(req, res) => {
                 id: req.params.id
             }
         });
-        res.json(rec);
+        res.json({status: true, msg: "Data availabled", rec});
     } catch (error) {
         console.log(error);
     }
