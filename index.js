@@ -20,8 +20,8 @@ app.listen(PORT, () => {
 });
 
 //connect to database
-const db = new Sequelize('agro_clima', 'root', 'abc', {
-    host: '34.23.185.163',
+const db = new Sequelize('agro_clima', 'root', '123', {
+    host: '34.28.108.156',
     dialect: 'mysql'
 });
 try {
